@@ -1,49 +1,39 @@
-# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pythonlibs/
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
-# compiled output
-dist
-tmp
-out-tsc
+# uv
+uv.lock
+
+# Flask app runtime files
+flask_app/uploads/*
+flask_app/outputs/*
+!flask_app/uploads/.gitkeep
+!flask_app/outputs/.gitkeep
+
+# Node (kept for the monorepo scaffold)
+node_modules/
+dist/
+build/
+.cache/
 *.tsbuildinfo
-.expo
-.expo-shared
 
-# dependencies
-node_modules
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
-
-# System Files
+# OS / editor
 .DS_Store
-Thumbs.db
-
-.cursor/rules/nx-rules.mdc
-.github/instructions/nx.instructions.md
+.vscode/
+.idea/
+*.swp
 
 # Replit
-.cache/
-.local/
+.replit-artifact/

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PDF Translator AI</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="badge">PDF Translator AI</div>
+        <h1>Translate any PDF into <span class="accent">Hindi</span> or <span class="accent">Marathi</span></h1>
+        <p class="subtitle">
+          Upload a PDF, pick a target language, and download a translated copy
+          that keeps the original layout. Devanagari rendering powered by
+          Noto Sans.
+        </p>
+      </header>
+
+      <main class="card">
+        <form id="translate-form" autocomplete="off">
+          <label class="dropzone" id="dropzone">
+            <input
+              id="file-input"
+              type="file"
+              name="file"
+              accept="application/pdf"
+              hidden
+            />
+            <div class="dropzone-inner">
+              <div class="dropzone-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <div class="dropzone-text">
+                <strong id="file-name">Drop a PDF here</strong>
+                <span>or click to browse — up to 25 MB</span>
+              </div>
+            </div>
+          </label>
+
+          <fieldset class="lang-group">
+            <legend>Target language</legend>
+            <div class="lang-options">
+              <label class="lang-pill">
+                <input type="radio" name="language" value="hindi" checked />
+                <span class="lang-title">Hindi</span>
+                <span class="lang-native">हिन्दी</span>
+              </label>
+              <label class="lang-pill">
+                <input type="radio" name="language" value="marathi" />
+                <span class="lang-title">Marathi</span>
+                <span class="lang-native">मराठी</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <button class="primary-btn" id="submit-btn" type="submit" disabled>
+            Translate PDF
+          </button>
+        </form>
+
+        <section class="status" id="status" hidden>
+          <div class="status-header">
+            <span id="status-label">Preparing…</span>
+            <span id="status-percent">0%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+          <p class="status-message" id="status-message"></p>
+          <a
+            class="primary-btn download-btn"
+            id="download-btn"
+            href="#"
+            hidden
+            download
+            >Download translated PDF</a
+          >
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Built with Flask + PyMuPDF + googletrans</span>
+      </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>

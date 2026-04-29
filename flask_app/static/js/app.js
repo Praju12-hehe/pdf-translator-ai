@@ -88,15 +88,14 @@
         if (!res.ok) throw new Error("Lost the job");
         const data = await res.json();
 
-        setProgress(
-          data.progress || 0,
-          data.status === "done"
-            ? "Complete"
-            : data.status === "error"
-            ? "Error"
-            : "Translating…",
-          data.message || ""
-        );
+        let label = "Translating…";
+        if (data.status === "done") label = "Complete";
+        else if (data.status === "error") label = "Error";
+        else if (data.pages_total) {
+          label = `Page ${data.pages_done || 0} / ${data.pages_total}`;
+        }
+
+        setProgress(data.progress || 0, label, data.message || "");
 
         if (data.status === "done") {
           clearInterval(pollTimer);
